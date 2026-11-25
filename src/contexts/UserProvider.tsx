@@ -19,7 +19,7 @@ interface UserContextType {
     updatePassword: (oldPassword: string, newPassword: string) => Promise<UpdateResult>;
 }
 
-const API_URL = 'http://localhost:8000/api/user';
+const API_URL = 'http://api-pitstop.glavingo.com/api/user';
 
 const UserContext = createContext<UserContextType | null>(null);
 

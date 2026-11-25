@@ -19,7 +19,7 @@ interface RepairsContextType {
     deleteRepair: (vehicleId: string | number, repairId: Repair['id']) => Promise<void>;
 }
 
-const API_URL = 'http://localhost:8000/api/repairs';
+const API_URL = 'http://api-pitstop.glavingo.com/api/repairs';
 
 const RepairsContext = createContext<RepairsContextType | null>(null);
 

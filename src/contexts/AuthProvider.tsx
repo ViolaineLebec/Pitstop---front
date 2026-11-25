@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   const signin = async (data) => {
     try {
-      const response = await fetch("http://localhost:8000/api/register", {
+      const response = await fetch("http://api-pitstop.glavingo.com/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (data) => {
     try {
-      const response = await fetch("http://localhost:8000/api/login", {
+      const response = await fetch("http://api-pitstop.glavingo.com/api/login", {
         credentials: "include",
         method: "POST",
         headers: {
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
         const err = await response.json();
         throw new Error(err.message || "Login failed");
       }
-      const meResponse = await fetch("http://localhost:8000/api/user", {
+      const meResponse = await fetch("http://api-pitstop.glavingo.com/api/user", {
         credentials: "include",
         method: "GET",
       });

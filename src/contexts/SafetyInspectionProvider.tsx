@@ -51,7 +51,7 @@ interface Props {
     children: ReactNode;
 }
 
-const API_URL = 'http://localhost:8000/api/safetyInspection';
+const API_URL = 'http://api-pitstop.glavingo.com/api/safetyInspection';
 
 const SafetyInspectionContext =
     createContext<SafetyInspectionContextType | null>(null);

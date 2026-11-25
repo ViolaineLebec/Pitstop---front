@@ -30,7 +30,7 @@ interface VehicleContextType {
     deleteVehicle: (id: Vehicle['id']) => Promise<boolean>;
 }
 
-const API_URL = 'http://localhost:8000/api/vehicle';
+const API_URL = 'http://api-pitstop.glavingo.com/api/vehicle';
 
 const VehicleContext = createContext<VehicleContextType | null>(null);
 
