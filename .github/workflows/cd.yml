@@ -49,7 +49,7 @@ jobs:
 
       - name: Déploiement sur le serveur
         run: |
-          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}
+          ssh -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}
           rsync -av dist/ ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html
 
       # - name: Déployer sur le VPS via SSH
