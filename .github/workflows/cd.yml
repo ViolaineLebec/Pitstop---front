@@ -56,4 +56,4 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           # script: |
           #   scp -r dist /var/www/html/build
-          run: rsync -av build/ ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html/
+          script: rsync -av build/ ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html/
