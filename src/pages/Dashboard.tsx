@@ -29,7 +29,7 @@ export default function Dashboard() {
 
     return (
         <div className="container">
-            <h1>DASHBOAR</h1>
+            <h1>DASHBOARD</h1>
 
             <h2>{user?.username.toUpperCase()}</h2>
 
