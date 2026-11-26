@@ -60,7 +60,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.VPS_PORT }}
           source: "dist/*"
-          target: "../../var/wwww/html"
+          target: "/var/www/html"
           # script: |
           #   scp -r build ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html
           # run: rsync -av build/ ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html/
