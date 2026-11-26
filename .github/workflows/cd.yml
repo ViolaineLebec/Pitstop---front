@@ -2,7 +2,7 @@ name: CD-Pitstop
 
 on: 
   push:
-    # branches: [main]
+    branches: [main]
     tags: 
       - 1.0.5
 
