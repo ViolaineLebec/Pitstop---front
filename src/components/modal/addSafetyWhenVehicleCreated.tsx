@@ -17,9 +17,9 @@ export default function AddSafetyWhenVehicleCreated({ vehicle, onClose }: AddSaf
         const form = new FormData(event.currentTarget);
 
         if (isDone) {
-            await safetyInspectionYes(vehicle.id, form.get('doneAt') as string, form.get('valid') === 'yes');
+            await safetyInspectionYes(String(vehicle.id), form.get('doneAt') as string, form.get('valid') === 'yes');
         } else {
-            await safetyInspectionNo(vehicle.id);
+            await safetyInspectionNo(String(vehicle.id));
         }
         onClose();
     }
