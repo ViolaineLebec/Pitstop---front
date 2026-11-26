@@ -32,7 +32,7 @@ jobs:
       with:
         name: build
         path: |
-          dist
+          build
 
   deploy:
     needs: [Build]
@@ -44,13 +44,8 @@ jobs:
         uses: actions/download-artifact@v8
         with: 
           name: build
-          path: dist/
+          path: build/
           retention-days: 1
-
-      # - name: Déploiement sur le serveur
-      #   run: |
-      #     ssh -i secrets.SSH_PRIVATE_KEY ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}
-      #     rsync -av dist/ ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html
 
       - name: Déployer sur le VPS via SSH
         uses: appleboy/scp-action@v1
@@ -59,8 +54,8 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.VPS_PORT }}
-          source: "dist/*"
+          source: "build/*"
           target: "/var/www/html"
-          # script: |
-          #   scp -r build ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html
-          # run: rsync -av build/ ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html/
+
+
+
