@@ -10,12 +10,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/main'
+    if: ${{github.ref == 'refs/heads/main'}}
 
     steps:
-    - name: Test
-      run: echo github.ref
-      
     - name: Récupérer le code
       uses: actions/checkout@v6
 
