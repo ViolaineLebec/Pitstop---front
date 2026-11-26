@@ -21,8 +21,8 @@ jobs:
       with:
         node-version: '24'
 
-    - name:  Installer les dépendances
-      run: npm ci
+    # - name:  Installer les dépendances
+    #   run: npm ci
 
     - name: Lancer le build
       run: npm run build
@@ -47,15 +47,20 @@ jobs:
           path: dist/
           retention-days: 1
 
-      - name: Déployer sur le VPS via SSH
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.VPS_PORT }}
-          source: ".,!node_modules"
-          target: "../../var/wwww/html"
+      - name: Déploiement sur le serveur
+        run: |
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}
+          rsync -av dist/ ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html
+
+      # - name: Déployer sur le VPS via SSH
+      #   uses: appleboy/scp-action@master
+      #   with:
+      #     host: ${{ secrets.VPS_HOST }}
+      #     username: ${{ secrets.VPS_USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     port: ${{ secrets.VPS_PORT }}
+      #     source: ".,!node_modules"
+      #     target: "../../var/wwww/html"
           # script: |
           #   scp -r build ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html
           # run: rsync -av build/ ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html/
