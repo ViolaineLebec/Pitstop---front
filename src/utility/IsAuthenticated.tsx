@@ -1,24 +1,20 @@
-
-import React from 'react'
+import type { ReactNode } from 'react';
 import Fallback from '../pages/Fallback';
 import { useAuth } from '../contexts/AuthProvider';
-import { AuthProvider } from '../contexts/AuthProvider';
+
+interface IsAuthenticatedProps {
+    fallback?: ReactNode;
+    children: ReactNode;
+}
 
 const IsAuthenticated = ({
     fallback = <Fallback />,
     children
-}) => {
-
-    const user = localStorage.getItem(user);
+}: IsAuthenticatedProps) => {
+    const { user } = useAuth();
 
     if (user) {
-
-        const { isAuthenticated } = { isAuthenticated: true };
-
-
-        if (isAuthenticated) {
-            return <>{children}</>;
-        }
+        return <>{children}</>;
     }
 
     return <>{fallback}</>;

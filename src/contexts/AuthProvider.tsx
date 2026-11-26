@@ -1,13 +1,22 @@
 // /contexts/AuthProvider.jsx
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, type ReactNode } from "react";
 
-const AuthContext = createContext(null);
+type AuthData = Record<string, string>;
+
+interface AuthContextType {
+  user: string | null;
+  login: (data: AuthData) => Promise<boolean>;
+  logout: () => void;
+  signin: (data: AuthData) => Promise<boolean>;
+}
+
+const AuthContext = createContext<AuthContextType | null>(null);
 const TOKEN = "token";
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(localStorage.getItem(TOKEN));
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<string | null>(localStorage.getItem(TOKEN));
 
-  const signin = async (data) => {
+  const signin = async (data: AuthData) => {
     try {
       const response = await fetch("http://api-pitstop.glavingo.com/api/register", {
         method: "POST",
@@ -23,7 +32,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const login = async (data) => {
+  const login = async (data: AuthData) => {
     try {
       const response = await fetch("http://api-pitstop.glavingo.com/api/login", {
         credentials: "include",
@@ -66,5 +75,9 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
 };

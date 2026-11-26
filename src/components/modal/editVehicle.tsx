@@ -18,7 +18,7 @@ export default function EditVehicle({ vehicle, onClose }: EditVehicleProps) {
             brand: form.get('brand') as string,
             model: form.get('model') as string,
             version: form.get('version') as string,
-            firstRegistrationDate: form.get('firstRegistrationDate') as string,
+            firstRegistrationDateAt: form.get('firstRegistrationDate') as string,
             typeOfFuel: form.get('typeOfFuel') as string,
             typeOfTransmission: form.get('typeOfTransmission') as string,
             mileage: Number(form.get('mileage')),
@@ -53,11 +53,11 @@ export default function EditVehicle({ vehicle, onClose }: EditVehicleProps) {
                     </label>
                     <label className="form-label w-100 mb-3">
                         Version
-                        <input name="version" defaultValue={vehicle.version} className="form-control mt-1" />
+                        <input name="version" defaultValue={vehicle.version ?? ''} className="form-control mt-1" />
                     </label>
                     <label className="form-label w-100 mb-3">
                         Date de première immatriculation
-                        <input name="firstRegistrationDate" type="date" defaultValue={vehicle.firstRegistrationDate} className="form-control mt-1" required />
+                        <input name="firstRegistrationDate" type="date" defaultValue={vehicle.firstRegistrationDateAt} className="form-control mt-1" required />
                     </label>
                     <label className="form-label w-100 mb-3">
                         Carburant
@@ -74,11 +74,11 @@ export default function EditVehicle({ vehicle, onClose }: EditVehicleProps) {
                     </label>
                     <label className="form-label w-100 mb-3">
                         Kilométrage
-                        <input name="mileage" type="number" min="0" defaultValue={vehicle.mileage} className="form-control mt-1" required />
+                        <input name="mileage" type="number" min="0" defaultValue={vehicle.mileage ?? ''} className="form-control mt-1" required />
                     </label>
                     <label className="form-label w-100 mb-3">
                         Km par jour
-                        <input name="kmPerDay" type="number" min="0" defaultValue={vehicle.kmPerDay} className="form-control mt-1" required />
+                        <input name="kmPerDay" type="number" min="0" defaultValue={vehicle.kmPerDay ?? ''} className="form-control mt-1" required />
                     </label>
                 </div>
                 <div className="modal-pitstop__actions">

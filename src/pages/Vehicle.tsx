@@ -70,7 +70,7 @@ export default function VehiclePage() {
         : '';
 
     const vehicle = vehicles.find((item) => {
-        const identifier = item.id ?? item.uuid ?? item.uid;
+        const identifier = item.id ?? item.uuid;
 
         return (
             identifier !== undefined &&
@@ -106,7 +106,7 @@ export default function VehiclePage() {
     }
 
     const vehicleId = String(
-        vehicle.id ?? vehicle.uuid ?? vehicle.uid
+        vehicle.id ?? vehicle.uuid
     );
 
     return (

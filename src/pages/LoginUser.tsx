@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../contexts/AuthProvider";
 import "./Auth.css";
@@ -7,10 +6,11 @@ export default function Login() {
     const { login } = useAuth();
     const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
-        event?.preventDefault();
-        const username = event?.target?.username?.value;
-        const password = event?.target?.password?.value;
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const username = (form.elements.namedItem("username") as HTMLInputElement).value;
+        const password = (form.elements.namedItem("password") as HTMLInputElement).value;
         const success = await login({ username, password });
         if (success) {
             navigate("/dashboard");
