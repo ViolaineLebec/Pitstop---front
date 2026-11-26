@@ -55,5 +55,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.VPS_PORT }}
           script: |
-            scp -r build /var/www/html/build
+            scp -r build ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html
           # run: rsync -av build/ ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html/
