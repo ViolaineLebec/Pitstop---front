@@ -59,7 +59,7 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.VPS_PORT }}
-          source: "dist/build"
+          source: "dist/*"
           target: "../../var/wwww/html"
           # script: |
           #   scp -r build ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html
