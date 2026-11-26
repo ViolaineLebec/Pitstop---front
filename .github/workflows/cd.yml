@@ -50,10 +50,10 @@ jobs:
       - name: Déployer sur le VPS via SSH
         uses: appleboy/ssh-action@v1
         with:
-          host: 15.235.252.147
+          host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.VPS_PORT }}
-          # script: |
-          #   scp -r dist /var/www/html/build
-          script: rsync -av build/ ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html/
+          script: |
+            scp -r dist /var/www/html/build
+          # run: rsync -av build/ ${{secrets.VPS_USERNAME}}@${{secrets.VPS_HOST}}:/var/www/html/
